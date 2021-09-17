@@ -5,6 +5,9 @@ import { Grid, Marquee, Hero } from '@components/ui'
 // import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import ReactPlayer from 'react-player'
+import {spring} from 'react-motion';
+import {ReactMotionLoop} from 'react-motion-loop';
+
 
 export async function getStaticProps({
   preview,
@@ -63,12 +66,20 @@ export default function Home({
         description="Choose your e-commerce solution, order it and watch your futár when he takes the pill and tries to find you."
       />
       <div>
-        <ReactPlayer
-          controls={false}
-          width={'100%'}
-          playing={true}
-          url="https://www.youtube.com/watch?v=NUYvbT6vTPs"
-        />
+        <ReactMotionLoop
+          styleFrom={{vol: spring(0)}}
+          styleTo={{vol: spring(100)}}
+        >
+        {(style) => 
+          <ReactPlayer
+            controls={false}
+            width={'100%'}
+            playing={true}
+            url="https://www.youtube.com/watch?v=NUYvbT6vTPs"
+            volume={style.vol}
+          />
+        }
+        </ReactMotionLoop>
       </div>
       <Grid layout="B" variant="filled">
         {products.slice(0, 3).map((product: any, i: number) => (
