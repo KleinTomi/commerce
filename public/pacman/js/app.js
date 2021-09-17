@@ -29,7 +29,7 @@ let pacSoundId
 let highScoreNumber = 0
 // the   time to go along with the high score
 let highScoreTime = 0
-const death = new Audio('pacman_death.wav')
+const death = new Audio('pacman_death.mp3')
 
 const ghostOne = {
   //ghost intial starting position
