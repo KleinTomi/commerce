@@ -4,7 +4,11 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="apple-touch-icon" href="/icon.png"></link>
+          <meta name="theme-color" content="#fff" />
+        </Head>
         <body className="loading">
           <Main />
           <NextScript />
