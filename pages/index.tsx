@@ -4,6 +4,7 @@ import { ProductCard } from '@components/product'
 import { Grid, Marquee, Hero } from '@components/ui'
 // import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+import ReactPlayer from 'react-player'
 
 export async function getStaticProps({
   preview,
@@ -61,6 +62,14 @@ export default function Home({
         headline=" Dessert dragée halvah croissant."
         description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "
       />
+      <div>
+        <ReactPlayer
+          controls={false}
+          width={'100%'}
+          playing={true}
+          url="https://www.youtube.com/watch?v=NUYvbT6vTPs"
+        />
+      </div>
       <Grid layout="B" variant="filled">
         {products.slice(0, 3).map((product: any, i: number) => (
           <ProductCard
