@@ -13,13 +13,7 @@ const isSaleor = provider === 'saleor'
 const isSwell = provider === 'swell'
 const isVendure = provider === 'vendure'
 
-module.exports = withPWA({
-  pwa: {
-    dest: "public",
-    register: true,
-    skipWaiting: true,
-  },
-},withCommerceConfig({
+module.exports = withPWA(withCommerceConfig({
   commerce,
   i18n: {
     locales: ['en-US', 'es'],
@@ -40,13 +34,19 @@ module.exports = withPWA({
       // For Vendure, rewrite the local api url to the remote (external) api url. This is required
       // to make the session cookies work.
       isVendure &&
-        process.env.NEXT_PUBLIC_VENDURE_LOCAL_URL && {
-          source: `${process.env.NEXT_PUBLIC_VENDURE_LOCAL_URL}/:path*`,
-          destination: `${process.env.NEXT_PUBLIC_VENDURE_SHOP_API_URL}/:path*`,
-        },
+      process.env.NEXT_PUBLIC_VENDURE_LOCAL_URL && {
+        source: `${process.env.NEXT_PUBLIC_VENDURE_LOCAL_URL}/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_VENDURE_SHOP_API_URL}/:path*`,
+      },
     ].filter(Boolean)
   },
-}))
+}),{
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+  },
+})
 
 // Don't delete this console log, useful to see the commerce config in Vercel deployments
 console.log('next.config.js', JSON.stringify(module.exports, null, 2))
